@@ -1,0 +1,40 @@
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { ArrowLeft, Search } from "lucide-react";
+
+export default function NotFound() {
+  return (
+    <div className='min-h-screen bg-gray-50 flex items-center justify-center px-4'>
+      <Card className='w-full max-w-md'>
+        <CardHeader className='text-center'>
+          <div className='mx-auto w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-4'>
+            <Search className='h-6 w-6 text-gray-400' />
+          </div>
+          <CardTitle>Project Not Found</CardTitle>
+          <CardDescription>
+            The project you are looking for doesnt exist or may have been
+            removed.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className='space-y-4'>
+          <Button asChild className='w-full'>
+            <Link href='/projects'>
+              <ArrowLeft className='h-4 w-4 mr-2' />
+              Back to Projects
+            </Link>
+          </Button>
+          <Button variant='outline' asChild className='w-full bg-transparent'>
+            <Link href='/'>Go to Homepage</Link>
+          </Button>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
