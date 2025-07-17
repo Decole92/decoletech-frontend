@@ -42,5 +42,5 @@ jobs:
 
         run: |
           # Replace image tag in manifest before applying
-          sed -i "s|GOOGLE_PROJECT_ID|${{ secrets.GOOGLE_PROJECT_ID }}|g" ./k8s/nextjs.yaml
+          sed -i "s|PROJECT_ID|${{ secrets.GOOGLE_PROJECT_ID }}|g" ./k8s/nextjs.yaml
           kubectl apply -f ./k8s/nextjs.yaml
