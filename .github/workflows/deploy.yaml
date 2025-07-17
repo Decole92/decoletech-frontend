@@ -19,7 +19,7 @@ jobs:
       - name: Set up gcloud CLI
         uses: google-github-actions/setup-gcloud@v2  # Updated to latest version
         with:
-          project_id: ${{ secrets.PROJECT_ID }}  # Use uppercase for consistency
+          project_id: ${{ secrets.project_id }}  # Use uppercase for consistency
           service_account_key: ${{ secrets.GOOGLE_CREDENTIALS }}
           install_components: gke-gcloud-auth-plugin
           export_default_credentials: true
@@ -29,11 +29,10 @@ jobs:
           gcloud auth configure-docker europe-west3-docker.pkg.dev --quiet
 
       - name: Build and Push Docker Images
-        env:
-          IMAGE_TAG: ${{ github.sha }}  # Use commit SHA for unique image tags
+       
         run: |
-          docker build -t europe-west3-docker.pkg.dev/${{ secrets.PROJECT_ID }}/decoletech/nextjs:${IMAGE_TAG} .
-          docker push europe-west3-docker.pkg.dev/${{ secrets.PROJECT_ID }}/decoletech/nextjs:${IMAGE_TAG}
+          docker build -t europe-west3-docker.pkg.dev/${{ secrets.project_id }}/decoletech/nextjs:latest .
+          docker push europe-west3-docker.pkg.dev/${{ secrets.project_id }}/decoletech/nextjs:latest
 
       - name: Get GKE Credentials
         run: |
