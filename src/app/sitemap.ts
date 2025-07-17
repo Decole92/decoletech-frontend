@@ -1,6 +1,27 @@
 import { MetadataRoute } from "next";
-import { getServices } from "./[locale]/actions/services";
 
+async function getServicesIds(): Promise<string[]> {
+  try {
+    // Use fetch with caching to allow static rendering
+    const response = await fetch(
+      `https://www.decoletech.com/api/services/getServices`,
+      {
+        next: { revalidate: 3600 }, // Cache for 1 hour (adjust as needed)
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch services: ${response.statusText}`);
+    }
+
+    const services = await response.json();
+
+    return services.map((service: { id: string }) => service.id.toString());
+  } catch (error) {
+    console.error("Error fetching service IDs:", error);
+    return []; // Return empty array on error to avoid breaking the build
+  }
+}
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const currentDate = new Date().toISOString();
 
@@ -13,7 +34,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // Dynamic service routes
-  const serviceIds = await getServices();
+  const serviceIds = await getServicesIds();
   const dynamicRoutes = serviceIds.map((id: string) => ({
     url: `https://www.decoletech.com/service/${id}`,
     lastModified: currentDate,
