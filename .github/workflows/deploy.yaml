@@ -41,7 +41,7 @@ jobs:
 
       - name: Deploy Kubernetes Manifests
         env:
-          IMAGE_TAG: ${{ secret.project_id }}
+          IMAGE_TAG: ${{ secrets.project_id }}
         run: |
           # Replace image tag in manifest before applying
           sed -i "s|GOOGLE_PROJECT|${IMAGE_TAG}|g" ./k8s/nextjs.yaml
