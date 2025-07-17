@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 // import { ThemeProvider } from "../../components/themes-provider";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,14 +18,15 @@ const geistMono = Geist_Mono({
 
 export async function generateMetadata() {
   return {
-    title: "Decole Tech | IT solution • Software Developement",
+    title: "Decole Tech | Full-Stack Developer & IT Solutions",
 
     description:
-      "Decole Tech provides AI-powered chatbot solutions for websites and WhatsApp, seamlessly integrated with mobile apps, web applications, DevOps, n8n workflows, and web translation services. Leverage our expertise in Next.js, OpenAI, microservices, and cloud platforms to drive customer engagement and business growth.",
-    keywords: "IT, DEVLOPS",
+      "Decole Tech delivers cutting-edge AI-powered solutions tailored for websites and workflows, integrating mobile applications, web applications, DevOps, n8n workflows, and web translation services. Harness our expertise in JavaScript with modern frameworks, Databases, LLM, Microservices, Monolithic and cloud platforms to boost customer engagement and accelerate business growth.",
+    keywords:
+      "IT, information technology, devlops, langchain, pinecone, ui/ux designing, n8n workflows, ai automation, github actions",
 
     icons: {
-      icon: ["/favicon.ico?v=4"],
+      icon: [{ url: "/favicon.png?v=4", sizes: "120x120", type: "image/png" }],
       apple: ["/favicon.ico?v=4"],
       shortcut: ["/favicon.ico"],
       sizes: ["32x32", "72x72", "96x96", "144x144", "192x192"],
@@ -49,7 +51,7 @@ export default async function RootLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }>) {
   const locale = (await params)?.locale || "en"; // Fallback to 'en' if locale is undefined
   const { resources } = await initTranslations(locale, i18nNamespaces);
@@ -64,6 +66,31 @@ export default async function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-slate-50 via-white to-teal-50`}
         >
+          <link
+            href='https://fonts.cdnfonts.com/css/theo-van-doesburg'
+            rel='stylesheet'
+          ></link>
+          <link rel='icon' href='/favicon.png' sizes='any' />
+          <Script
+            id='google_analytic'
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=G-1XYBJQ5PY8`}
+            strategy='beforeInteractive'
+          />
+
+          <Script
+            id='google_analytic_inline'
+            dangerouslySetInnerHTML={{
+              __html: `window.dataLayer = window.dataLayer || [];
+              function gtag() {
+                dataLayer.push(arguments);
+              }
+              gtag("js", new Date());
+              gtag("config", "G-1XYBJQ5PY8");`,
+            }}
+            strategy='beforeInteractive'
+          />
+
           {/* <ThemeProvider
             attribute='class'
             defaultTheme='system'

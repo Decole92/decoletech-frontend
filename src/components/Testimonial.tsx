@@ -27,7 +27,7 @@ const testimonials = [
   },
   {
     id: 3,
-    name: "Decole",
+    name: "Austine",
     position: "Founder & CTO",
     company: "N/A",
     image: "/quiksbot.png?height=80&width=80",

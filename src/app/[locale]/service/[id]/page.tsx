@@ -21,7 +21,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${service.title} | Decole Tech`,
+    title: `${service.title} | DecoleTech`,
     description: service.description,
     openGraph: {
       title: service.title,
@@ -40,10 +40,10 @@ export async function generateMetadata({
 
 export default async function ServicePage({ params }: PageProps) {
   const { id } = await params;
-  console.log("id", id);
+  // console.log("id", id);
 
   const service = await getService(id);
-  console.log("service", service);
+  // console.log("service", service);
 
   if (!service) {
     notFound();

@@ -134,9 +134,9 @@ export default function Hero() {
 
       {/* Main content */}
       <div className='relative z-10 flex items-center justify-center min-h-screen px-6 lg:px-8'>
-        <div className='max-w-4xl mx-auto text-center'>
+        <div className='max-w-4xl mx-auto text-center mt-32 mb-32 '>
           {/* Main heading */}
-          <div className='mb-8'>
+          <div className='mb-8 '>
             <h1 className='text-5xl md:text-7xl font-bold text-white mb-4'>
               Crafting{" "}
               <span className='bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-300 bg-clip-text text-transparent'>
@@ -153,7 +153,7 @@ export default function Hero() {
           <div className='mb-12 max-w-3xl mx-auto'>
             <p className='text-lg text-blue-50/90 leading-relaxed'>
               Passionate Full-Stack Developer with{" "}
-              <span className='text-cyan-300 font-semibold'>10+ years</span> of
+              <span className='text-cyan-300 font-semibold'>7+ years</span> of
               experience building scalable, user-friendly web applications.
               Proficient in modern JavaScript frameworks, cloud technologies,
               and AI integrations.
@@ -380,7 +380,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <div className='absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce'>
         <div className='w-6 h-10 border-2 border-cyan-400/50 rounded-full flex justify-center'>
           <div className='w-1 h-3 bg-cyan-400 rounded-full mt-2 animate-pulse'></div>

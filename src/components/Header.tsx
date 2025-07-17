@@ -178,13 +178,6 @@ export default function Header() {
             >
               {t("projects")}
             </Link>
-
-            {/* <Link
-              href='#contact'
-              className='text-gray-700 hover:text-teal-700 font-medium transition-colors'
-            >
-              {t("contactUs")}
-            </Link> */}
           </div>
 
           <div className='hidden lg:flex items-center space-x-2'>
@@ -234,12 +227,12 @@ export default function Header() {
           <div className='lg:hidden'>
             <Button
               variant='ghost'
-              size='sm'
+              size='lg'
               onClick={() => setIsOpen(!isOpen)}
               className='text-gray-700'
             >
               {isOpen ? (
-                <X className='w-6 h-6' />
+                <X className='h-6 w-6 ' />
               ) : (
                 <Menu className='w-6 h-6' />
               )}
@@ -252,7 +245,9 @@ export default function Header() {
             <div className='flex flex-col space-y-4'>
               {/* Services */}
               <div>
-                <div className='text-gray-900 font-medium mb-2'>Services</div>
+                <div className='text-gray-900 font-medium mb-2'>
+                  {t("services")}
+                </div>
                 <div className='pl-4 space-y-2'>
                   {services && services?.length === 0 ? (
                     <span>No services available</span>
@@ -280,14 +275,7 @@ export default function Header() {
               </div>
 
               <Link
-                href='#about'
-                className='text-gray-700 hover:text-teal-700 font-medium'
-                onClick={() => setIsOpen(false)}
-              >
-                {t("aboutMe")}
-              </Link>
-              <Link
-                href='/testimonials'
+                href='/#testimonial'
                 className='text-gray-700 hover:text-teal-700 font-medium'
                 onClick={() => setIsOpen(false)}
               >
@@ -301,39 +289,39 @@ export default function Header() {
                 {t("projects")}
               </Link>
               <Link
-                href='#about'
+                href='/#whyus'
                 className='text-gray-700 hover:text-teal-700 font-medium'
                 onClick={() => setIsOpen(false)}
               >
-                {t("aboutMe")}
+                {t("whyUs")}
               </Link>
-              {/* <Link
-                href='/contact'
-                className='text-gray-700 hover:text-teal-700 font-medium'
-                onClick={() => setIsOpen(false)}
-              >
-                {t("contactUs")}
-              </Link> */}
 
               {/* Language Selector Mobile */}
               <div>
-                <div className='text-gray-900 font-medium mb-2'>Language</div>
+                <div className='text-gray-900 font-medium mb-2'>
+                  {t("languages")}
+                </div>
                 <div className='pl-4 space-y-2'>
                   {languages.map((lang) => (
-                    <button
+                    <Button
+                      variant={"ghost"}
+                      onClick={() => changeLanguage(lang.code)}
                       key={lang.code}
                       className='flex items-center space-x-2 text-gray-600 hover:text-teal-700 py-1'
                     >
                       <span>{lang.flag}</span>
                       <span>{lang.name}</span>
-                    </button>
+                    </Button>
                   ))}
                 </div>
               </div>
 
               <div className='inline-block bg-gradient-to-r from-cyan-600 to-blue-600 p-[2px] rounded-full group transition-all duration-300'>
-                <Button className='bg-white text-cyan-600 rounded-full px-6 py-2 font-medium shadow-lg transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-cyan-600 group-hover:to-blue-700 group-hover:text-white'>
-                  {t("contactUs")}
+                <Button
+                  asChild
+                  className='bg-white text-cyan-600 w-full rounded-full px-6 py-2 font-medium shadow-lg transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-cyan-600 group-hover:to-blue-700 group-hover:text-white'
+                >
+                  <Link href='/contact'>{t("contactUs")}</Link>
                 </Button>
               </div>
             </div>
