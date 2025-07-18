@@ -309,15 +309,13 @@ export default function Footer() {
                 ))}
               </div>
               <div className='text-blue-200 text-center md:text-right'>
-                <p className='mb-2'>
-                  © 2024 Augustine Udeh. All rights reserved.
-                </p>
+                <p className='mb-2'>© 2024 Decole Tech. All rights reserved.</p>
                 <p className='text-sm mb-2'>
                   (IČO) 21782326 Udeh Augustine Ekene.
                 </p>
-                <p className='text-sm'>
+                {/* <p className='text-sm'>
                   Built with Next.js, TypeScript & Tailwind CSS
-                </p>
+                </p> */}
               </div>
             </div>
           </div>

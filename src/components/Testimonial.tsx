@@ -67,7 +67,7 @@ export default function TestimonialsSection() {
                 {/* Quote Icon */}
                 <div className='mb-6'>
                   <svg
-                    className='w-10 h-10 text-cyan-500'
+                    className='w-10 h-10 text-blue-500'
                     fill='currentColor'
                     viewBox='0 0 24 24'
                   >
@@ -77,7 +77,7 @@ export default function TestimonialsSection() {
 
                 {/* Testimonial Content */}
                 <blockquote className='text-gray-700 leading-relaxed mb-6 text-lg'>
-                  &lsquo; {testimonial.content} &rsquo;
+                  {testimonial.content}
                 </blockquote>
 
                 {/* Rating Stars */}
@@ -109,7 +109,7 @@ export default function TestimonialsSection() {
                     <div className='text-gray-600 text-sm'>
                       {testimonial.position} at {testimonial.company}
                     </div>
-                    <div className='text-cyan-600 text-sm font-medium mt-1'>
+                    <div className='text-cyan-500 text-sm font-medium mt-1'>
                       Project: {testimonial.project}
                     </div>
                   </div>
@@ -118,63 +118,6 @@ export default function TestimonialsSection() {
             </Card>
           ))}
         </div>
-
-        {/* Bottom CTA */}
-        {/* <div className='text-center mt-16'>
-          <div className='bg-white rounded-2xl p-8 shadow-lg max-w-4xl mx-auto'>
-            <h3 className='text-2xl md:text-3xl font-bold text-gray-900 mb-4'>
-              Ready to Start Your Project?
-            </h3>
-            <p className='text-lg text-gray-600 mb-6'>
-              Join these satisfied clients and let's build something amazing
-              together.
-            </p>
-            <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
-              <div className='flex items-center text-gray-600'>
-                <svg
-                  className='w-5 h-5 text-green-500 mr-2'
-                  fill='currentColor'
-                  viewBox='0 0 20 20'
-                >
-                  <path
-                    fillRule='evenodd'
-                    d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
-                    clipRule='evenodd'
-                  />
-                </svg>
-                Free Consultation
-              </div>
-              <div className='flex items-center text-gray-600'>
-                <svg
-                  className='w-5 h-5 text-green-500 mr-2'
-                  fill='currentColor'
-                  viewBox='0 0 20 20'
-                >
-                  <path
-                    fillRule='evenodd'
-                    d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
-                    clipRule='evenodd'
-                  />
-                </svg>
-                24/7 Support
-              </div>
-              <div className='flex items-center text-gray-600'>
-                <svg
-                  className='w-5 h-5 text-green-500 mr-2'
-                  fill='currentColor'
-                  viewBox='0 0 20 20'
-                >
-                  <path
-                    fillRule='evenodd'
-                    d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
-                    clipRule='evenodd'
-                  />
-                </svg>
-                Money-back Guarantee
-              </div>
-            </div>
-          </div>
-        </div> */}
       </div>
     </section>
   );

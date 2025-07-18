@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4 # Updated to latest version
 
       - name: Set up gcloud CLI
-        uses: google-github-actions/setup-gcloud@v0 # Updated to latest version
+        uses: google-github-actions/setup-gcloud@v2 # Updated to latest version
         with:
           project_id: ${{ secrets.GOOGLE_PROJECT_ID }} # Use uppercase for consistency
           service_account_key: ${{ secrets.GOOGLE_CLOUD_CREDENTIAL }}
@@ -43,83 +43,6 @@ jobs:
 
         run: |
           # Replace image tag in manifest before applying
-          sed -i "s|GOOGLE_PROJECT|${{ secrets.GOOGLE_PROJECT_ID }}|g" ./k8s/nextjs.yaml
+          sed -i "s||${{ secrets.GOOGLE_PROJECT_ID }}|g" ./k8s/nextjs.yaml
           kubectl apply -f ./k8s/nextjs.yaml
 
-
-          name: Deploy Quiksbot App
-
-on:
-  push:
-    branches:
-      - "main"
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Code checkout
-        uses: actions/checkout@v2
-
-      - name: Install the gcloud CLI
-        uses: google-github-actions/setup-gcloud@v0
-        with:
-          project_id: quiksbot
-          service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIAL }}
-          install_components: "gke-gcloud-auth-plugin"
-          export_default_credentials: true
-
-      - name: Build and push Docker image
-        env:
-          ANTHROPIC_KEY: ${{ secrets.ANTHROPIC_KEY }}
-          CHROMIUM_PATH: /tmp
-          CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
-          CONFIGURATION_ID: ${{ secrets.CONFIGURATION_ID }}
-          CRONJOB_SECRET: ${{ secrets.CRONJOB_SECRET }}
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          DEEPSEEK_KEY: ${{ secrets.DEEPSEEK_KEY }}
-          EDGE_STORE_ACCESS_KEY: ${{ secrets.EDGE_STORE_ACCESS_KEY }}
-          EDGE_STORE_SECRET_KEY: ${{ secrets.EDGE_STORE_SECRET_KEY }}
-          GEMINI_KEY: ${{ secrets.GEMINI_KEY }}
-          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
-          IP_KEY: ${{ secrets.IP_KEY }}
-          NODE_MAILER_GMAIL_APP_PASSWORD: ${{ secrets.NODE_MAILER_GMAIL_APP_PASSWORD }}
-          OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
-          PINECONE_API_KEY: ${{ secrets.PINECONE_API_KEY }}
-          STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
-          STRIPE_WEBHOOK_KEY: ${{ secrets.STRIPE_WEBHOOK_KEY }}
-          WHATSAPP_APP_SECRET: ${{ secrets.WHATSAPP_APP_SECRET }}
-          WHATSAPP_VERIFY_TOKEN: ${{ secrets.WHATSAPP_VERIFY_TOKEN }}
-          XAI_KEY: ${{ secrets.XAI_KEY }}
-        run: |
-          gcloud auth configure-docker europe-west3-docker.pkg.dev --quiet
-          docker build -f dockerfile \
-            $(printf -- '--build-arg %s="%s" ' \
-              ANTHROPIC_KEY "$ANTHROPIC_KEY" \
-              CHROMIUM_PATH "$CHROMIUM_PATH" \
-              CLERK_SECRET_KEY "$CLERK_SECRET_KEY" \
-              CONFIGURATION_ID "$CONFIGURATION_ID" \
-              CRONJOB_SECRET "$CRONJOB_SECRET" \
-              DATABASE_URL "$DATABASE_URL" \
-              DEEPSEEK_KEY "$DEEPSEEK_KEY" \
-              EDGE_STORE_ACCESS_KEY "$EDGE_STORE_ACCESS_KEY" \
-              EDGE_STORE_SECRET_KEY "$EDGE_STORE_SECRET_KEY" \
-              GEMINI_KEY "$GEMINI_KEY" \
-              GOOGLE_CLIENT_SECRET "$GOOGLE_CLIENT_SECRET" \
-              IP_KEY "$IP_KEY" \
-              NODE_MAILER_GMAIL_APP_PASSWORD "$NODE_MAILER_GMAIL_APP_PASSWORD" \
-              OPENAI_KEY "$OPENAI_KEY" \
-              PINECONE_API_KEY "$PINECONE_API_KEY" \
-              STRIPE_API_KEY "$STRIPE_API_KEY" \
-              STRIPE_WEBHOOK_KEY "$STRIPE_WEBHOOK_KEY" \
-              WHATSAPP_APP_SECRET "$WHATSAPP_APP_SECRET" \
-              WHATSAPP_VERIFY_TOKEN "$WHATSAPP_VERIFY_TOKEN" \
-              XAI_KEY "$XAI_KEY") \
-            -t europe-west3-docker.pkg.dev/quiksbot/quiksbot/quiksbot:latest .
-          docker push europe-west3-docker.pkg.dev/quiksbot/quiksbot/quiksbot:latest
-
-      - name: Deploy to GKE
-        run: |
-          gcloud container clusters get-credentials autopilot-cluster-1 --region us-central1
-          sed -i "s/GOOGLE_PROJECT/quiksbot/g" resources.yaml
-          kubectl apply -f resources.yaml

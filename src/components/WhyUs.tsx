@@ -63,12 +63,14 @@ export default function WhyUs() {
       <div className='container mx-auto px-4 max-w-6xl'>
         {/* Header */}
         <div className='text-center mb-12'>
-          <Badge className='mb-4 bg-blue-50 text-blue-600 border-blue-200'>
+          <Badge className='mb-4 bg-blue-50 text-blue-500 border-blue-200'>
             Why Partner With Us
           </Badge>
           <h2 className='text-3xl md:text-4xl font-bold text-gray-900 mb-4'>
-            Empower Your Business with
-            <span className='text-blue-600'> Cutting-Edge Solutions</span>
+            Empower Your Business with{" "}
+            <span className='bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent'>
+              Cutting-Edge Solutions
+            </span>
           </h2>
           <p className='text-lg text-gray-600 max-w-2xl mx-auto'>
             From AI-driven platforms to SEO-optimized websites, we deliver
