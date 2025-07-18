@@ -42,3 +42,8 @@ jobs:
           # Replace image tag in manifest before applying
           sed -i "s|GOOGLE_PROJECT_ID|${{ secrets.GOOGLE_PROJECT_ID}}|g" nextjs.yaml
           kubectl apply -f nextjs.yaml
+
+      - name: Force Rolling Restart of Deployment
+        run: |
+          kubectl rollout restart deployment decoletech
+          kubectl rollout status deployment decoletech --timeout=300s

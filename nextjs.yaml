@@ -63,6 +63,7 @@ spec:
       containers:
         - name: decoletech
           image: europe-west3-docker.pkg.dev/pragueit-465611/decoletech/nextjs:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
           readinessProbe:
