@@ -368,7 +368,7 @@ export default function TechStackSlider() {
                   clipRule='evenodd'
                 />
               </svg>
-              10+ Years Experience
+              7+ Years Experience
             </div>
             <div className='flex items-center text-gray-600'>
               <svg
