@@ -14,35 +14,31 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4 # Updated to latest version
+        uses: actions/checkout@v4
 
       - name: Set up gcloud CLI
-        uses: google-github-actions/setup-gcloud@v2 # Updated to latest version
+        uses: google-github-actions/setup-gcloud@v2
         with:
-          project_id: ${{ secrets.GOOGLE_PROJECT_ID }} # Use uppercase for consistency
+          project_id: ${{ secrets.GOOGLE_PROJECT_ID }}
           service_account_key: ${{ secrets.GOOGLE_CLOUD_CREDENTIAL }}
           install_components: gke-gcloud-auth-plugin
           export_default_credentials: true
 
       - name: Authenticate Docker with Artifact Registry
         run: |
-       gcloud auth configure-docker \
-    europe-west3-docker.pkg.dev
+          gcloud auth configure-docker europe-west3-docker.pkg.dev
 
       - name: Build and Push Docker Images
-
         run: |
-          docker build -t europe-west3-docker.pkg.dev/${{ secrets.GOOGLE_PROJECT_ID }}/decoletech/nextjs:v2 .
-          docker push europe-west3-docker.pkg.dev/${{ secrets.GOOGLE_PROJECT_ID }}/decoletech/nextjs:v2
+          docker build -t europe-west3-docker.pkg.dev/${{ secrets.GOOGLE_PROJECT_ID }}/decoletech/nextjs:latest .
+          docker push europe-west3-docker.pkg.dev/${{ secrets.GOOGLE_PROJECT_ID }}/decoletech/nextjs:latest
 
       - name: Get GKE Credentials
         run: |
           gcloud container clusters get-credentials autopilot-cluster-1 --region us-central1
 
       - name: Deploy Kubernetes Manifests
-
         run: |
           # Replace image tag in manifest before applying
-          sed -i "s||${{ secrets.GOOGLE_PROJECT_ID }}|g" ./k8s/nextjs.yaml
+          sed -i "s|GOOGLE_PROJECT_ID|${{ secrets.GOOGLE_PROJECT_ID }}|g" ./k8s/nextjs.yaml
           kubectl apply -f ./k8s/nextjs.yaml
-
