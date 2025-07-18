@@ -1,0 +1,80 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: decoletech
+spec:
+  domains:
+    - decoletech.com
+    - www.decoletech.com
+---
+apiVersion: networking.gke.io/v1beta1
+kind: FrontendConfig
+metadata:
+  name: decoletech
+spec:
+  redirectToHttps:
+    enabled: true
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: decoletech
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.global-static-ip-name: decoletech
+    networking.gke.io/v1beta1.FrontendConfig: decoletech
+    networking.gke.io/managed-certificates: decoletech
+spec:
+  defaultBackend:
+    service:
+      name: decoletech
+      port:
+        number: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: decoletech
+spec:
+  type: NodePort
+  selector:
+    app: decoletech
+  ports:
+    - port: 3000
+      targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: decoletech
+  labels:
+    app: decoletech
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: decoletech
+  template:
+    metadata:
+      labels:
+        app: decoletech
+    spec:
+      containers:
+        - name: decoletech
+          image: europe-west3-docker.pkg.dev/pragueit-465611/decoletech/nextjs:latest
+          ports:
+            - containerPort: 3000
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 5
+          envFrom:
+            - secretRef:
+                name: nextjs-secrets
+            # - configMapRef:
+            #     name: quiksbot-config
