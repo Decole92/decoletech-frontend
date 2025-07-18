@@ -224,7 +224,38 @@ export default function Header() {
             {/* <ModeToggle /> */}
           </div>
 
-          <div className='lg:hidden'>
+          <div className='lg:hidden flex items-center '>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant='outline'
+                  size='lg'
+                  className='flex items-center space-x-1'
+                >
+                  {/* Display the currently selected language */}
+                  <span>
+                    {
+                      languages.find((lang) => lang.code === currentLocale)
+                        ?.flag
+                    }
+                  </span>
+
+                  <ChevronDown className='w-3 h-3' />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {languages.map((lang) => (
+                  <DropdownMenuItem
+                    key={lang.code}
+                    className='flex items-center space-x-2'
+                    onClick={() => changeLanguage(lang.code)}
+                  >
+                    <span>{lang.flag}</span>
+                    <span>{lang.name}</span>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Button
               variant='ghost'
               size='lg'
@@ -295,26 +326,6 @@ export default function Header() {
               >
                 {t("whyUs")}
               </Link>
-
-              {/* Language Selector Mobile */}
-              <div>
-                <div className='text-gray-900 font-medium mb-2'>
-                  {t("languages")}
-                </div>
-                <div className='pl-4 space-y-2'>
-                  {languages.map((lang) => (
-                    <Button
-                      variant={"ghost"}
-                      onClick={() => changeLanguage(lang.code)}
-                      key={lang.code}
-                      className='flex items-center space-x-2 text-gray-600 hover:text-teal-700 py-1'
-                    >
-                      <span>{lang.flag}</span>
-                      <span>{lang.name}</span>
-                    </Button>
-                  ))}
-                </div>
-              </div>
 
               <div className='inline-block bg-gradient-to-r from-cyan-600 to-blue-600 p-[2px] rounded-full group transition-all duration-300'>
                 <Button
