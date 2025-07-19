@@ -281,7 +281,7 @@ export default function EditProjectPage() {
 
       // Send categories as category field
       submitData.append("category", JSON.stringify(formData.categories));
-
+      console.log("");
       // Add image file if uploaded
       if (imageFile) {
         submitData.append("imageFile", imageFile);
@@ -672,7 +672,7 @@ export default function EditProjectPage() {
                     id='featured'
                     checked={formData.featured}
                     onCheckedChange={(checked) =>
-                      handleInputChange("featured", checked)
+                      handleInputChange("featured", checked === true)
                     }
                   />
                   <Label htmlFor='featured'>Featured Project</Label>

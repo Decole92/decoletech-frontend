@@ -110,7 +110,7 @@ export default function ContactForm() {
 
       if (response.ok) {
         toast.success(
-          "Inquiry Sent Successfully!, Thank you for your inquiry. We'll get back to you Asap."
+          "Inquiry Sent Successfully!, Thank you for your inquiry. Please check your Spam Inbox."
         );
 
         // Reset form

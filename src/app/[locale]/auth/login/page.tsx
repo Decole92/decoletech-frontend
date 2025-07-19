@@ -109,7 +109,7 @@ export default function LoginPage() {
       toast(
         "Google Sign-up, Google OAuth integration would be implemented here."
       );
-      router.push(`http://localhost:8084/auth/google/login`);
+      router.push(`${process.env.NEXT_PUBLIC_AUTH_URL}/auth/google/login`);
     } catch (error) {
       toast.error(`Google Sign-in Failed, Please try again later. ${error}`);
     }

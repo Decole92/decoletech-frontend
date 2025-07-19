@@ -23,7 +23,7 @@ export async function generateMetadata() {
     description:
       "Decole Tech delivers cutting-edge AI-powered solutions tailored for websites and workflows, integrating mobile applications, web applications, DevOps, n8n workflows, and web translation services. Harness our expertise in JavaScript with modern frameworks, Databases, LLM, Microservices, Monolithic and cloud platforms to boost customer engagement and accelerate business growth.",
     keywords:
-      "IT, information technology, devlops, langchain, pinecone, ui/ux designing, n8n workflows, ai automation, github actions",
+      "IT, information technology, devlops, langchain, pinecone, ui/ux designing, n8n workflows, ai automation, github actions, web application development, mobile app development, AI solutions, cloud computing, DevOps services, API integration, database management, e-commerce solutions, payment gateway integration, UI/UX design, website localization, performance optimization, SEO services, React Native, Swift, Node.js, AWS, Azure, MongoDB, PostgreSQL, Shopify, Stripe, Figma, translation services, digital transformation, scalable solutions",
 
     icons: {
       icon: [{ url: "/favicon.png?v=4", sizes: "120x120", type: "image/png" }],

@@ -309,7 +309,7 @@ export default function Footer() {
                 ))}
               </div>
               <div className='text-blue-200 text-center md:text-right'>
-                <p className='mb-2'>© 2024 Decole Tech. All rights reserved.</p>
+                <p className='mb-2'>© 2024 DecoleTech. All rights reserved.</p>
                 <p className='text-sm mb-2'>
                   (IČO) 21782326 Udeh Augustine Ekene.
                 </p>

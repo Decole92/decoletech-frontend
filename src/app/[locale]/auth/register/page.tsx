@@ -150,7 +150,7 @@ export default function RegisterPage() {
       toast.success("Google Sign-up");
 
       // router.push(`${process.env.AUTH_URL}/auth/google/login`);
-      router.push(`http://localhost:8084/auth/google/login`);
+      router.push(`${process.env.NEXT_PUBLIC_AUTH_URL}/auth/google/login`);
     } catch (error) {
       toast.error(`Google Sign-up Failed, Please try again later.${error}`);
     }
