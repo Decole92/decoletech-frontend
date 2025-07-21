@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
   if (!accessToken || !refreshToken || !userId || !role)
     throw new Error("Google Ouath Failed!");
 
-  const session = await createSession({
+  await createSession({
     user: {
       id: userId,
       role: role as Role,
