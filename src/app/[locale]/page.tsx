@@ -21,10 +21,6 @@ export default function Home() {
           <ProjectsSection />
         </section>
 
-        <section id='testimonial' className='snap-center'>
-          <TestimonialsSection />
-        </section>
-
         <section id='stacks' className='snap-center'>
           <TechStackSlider />
         </section>
@@ -35,6 +31,10 @@ export default function Home() {
 
         <section id='whyus' className='snap-center'>
           <WhyUs />
+        </section>
+
+        <section id='testimonial' className='snap-center'>
+          <TestimonialsSection />
         </section>
 
         <ScrollingText />
