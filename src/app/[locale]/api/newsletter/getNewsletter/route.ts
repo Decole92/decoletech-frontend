@@ -16,7 +16,6 @@ export async function GET() {
       }
     );
     const project = await response.json();
-    console.log("newsletter", project);
     return NextResponse.json(project);
   } catch (err) {
     throw new Error(`Error occurs while gettting newsletters ${err}`);

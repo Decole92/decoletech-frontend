@@ -22,6 +22,6 @@ export async function GET(req: NextRequest) {
     accessToken,
     refreshToken,
   });
-  console.log("session", session);
+
   redirect("/admin/dashboard");
 }

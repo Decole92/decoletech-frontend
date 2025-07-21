@@ -12,6 +12,7 @@ export default function ProjectsSection() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const [totalProject, setTotalProject] = useState<number>(0);
   useEffect(() => {
     const fetchProjects = async () => {
       try {
@@ -26,7 +27,9 @@ export default function ProjectsSection() {
 
         const data = await response.json();
 
-        const featured = Array.isArray(data)
+        const isArray = Array.isArray(data);
+        setTotalProject(isArray ? data?.length : 0);
+        const featured = isArray
           ? data.filter((project: Project) => project.featured)
           : [];
 
@@ -101,7 +104,7 @@ export default function ProjectsSection() {
         <div className='grid grid-cols-2 md:grid-cols-4 gap-8 mb-12 py-12 border-t border-b border-gray-200'>
           <div className='text-center'>
             <div className='text-3xl md:text-4xl font-bold text-cyan-600 mb-2'>
-              {featuredProjects?.length}
+              {totalProject}+
             </div>
             <div className='text-gray-600 font-medium'>Projects Completed</div>
           </div>
