@@ -46,7 +46,7 @@ export default function DashboardClient() {
             fetch("/api/newsletter/getNewsletter"),
           ]);
 
-        const [projects, services, inquiries] = await Promise.all([
+        const [projects, services, inquiries, newsletters] = await Promise.all([
           projectsRes.json(),
           servicesRes.json(),
           inquiriesRes.json(),
@@ -57,7 +57,7 @@ export default function DashboardClient() {
           projects: Array.isArray(projects) ? projects : [],
           services: Array.isArray(services) ? services : [],
           inquiries: Array.isArray(inquiries) ? inquiries : [],
-          newsletters: Array.isArray(inquiries) ? inquiries : [],
+          newsletters: Array.isArray(newsletters) ? newsletters : [],
         });
       } catch (error) {
         console.error("Error fetching dashboard data:", error);
@@ -130,7 +130,7 @@ export default function DashboardClient() {
     {
       name: "Newsletter Subscribers",
       value: dashboardData.newsletters
-        .filter((n) => n.status === "active")
+        ?.filter((n) => n.status === "active")
         .length.toString(),
       change: `${
         dashboardData.newsletters.filter((n) => {

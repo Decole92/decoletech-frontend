@@ -259,7 +259,9 @@ export default function ServiceClient({ service }: ServiceClientProps) {
               <CardContent className='space-y-3'>
                 <div className='flex justify-between items-center text-sm'>
                   <span className='text-gray-600'>Service Category</span>
-                  <Badge className='bg-blue-500 text-white'>Web Dev</Badge>
+                  <Badge className='bg-blue-500 text-white'>
+                    {service?.category}
+                  </Badge>
                 </div>
                 <div className='flex justify-between items-center text-sm'>
                   <span className='text-gray-600'>Last Updated</span>
